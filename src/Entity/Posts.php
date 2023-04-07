@@ -4,14 +4,18 @@ namespace App\Entity;
 
 use App\Repository\Post\PostsRepository;
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
  *@UniqueEntity("slug" )
  *@ORM\HasLifecycleCallbacks()
+ *@Vich\Uploadable()
  */
 class Posts
 {
@@ -58,14 +62,17 @@ class Posts
     private $updatedOn;
 
     /**
+     *
      * @ORM\OneToMany(targetEntity=Thumbnail::class, mappedBy="posts",cascade={"persist"},fetch="EAGER")
      */
-    private $images;
+    private $thumbnail;
 
     public function __contruct()
     {
         $this->updatedon = new \DateTimeImmutable();
         $this->createdon = new \DateTimeImmutable();
+        $this->images = new ArrayCollection();
+
     }
 
     /**
@@ -91,7 +98,7 @@ class Posts
         return $this->id;
     }
 
-    public function getTite(): ?string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -160,8 +167,10 @@ class Posts
 
         return $this;
     }
-
-    public function getThumbnail(): ?Thumbnail
+    /**
+     * @return Collection<int, thumbnail>
+     */
+    public function getThumbnail(): Collection
     {
         return $this->thumbnail;
     }

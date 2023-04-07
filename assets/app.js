@@ -8,7 +8,8 @@
 // any CSS you import will output into a single css file (app.css in this case)
 // import "./styles/styles.scss";
 import "./styles/app.css";
-
+import "tw-elements";
+import "./react/Posts";
 console.log("Webpack encore is runing");
 
 // start the Stimulus application

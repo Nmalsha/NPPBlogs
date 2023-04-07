@@ -11,7 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=ThumbnailRepository::class)
  * *@ORM\HasLifecycleCallbacks()
- * @Vich\Uploadable
+ * @Vich\Uploadable()
  */
 class Thumbnail
 {

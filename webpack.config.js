@@ -26,7 +26,7 @@ Encore
   //.addEntry("app", "/public/build/app.css")
 
   .addEntry("styles", "./assets/app.js")
-  .addEntry("app", "./assets/react/index.js")
+  .addEntry("app", "./assets/react/**.jsx")
 
   // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
   //  .enableStimulusBridge('./assets/controllers.json')
